@@ -1,0 +1,19 @@
+body {
+    padding: 10px;
+    font-family: sans-serif;
+}
+h1 { font-size: 20px; }
+canvas { border: 1px solid #aaa; }
+#links {margin-top: 15px;}
+a {
+    display: inline-block;
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+    white-space: nowrap;
+}
+a.selected {font-weight: bold;}
+a:hover, a:active {
+    color: white;
+    background-color: #000044;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<!--
+    Taken from Mozilla examples:
+    https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_text
+-->
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Text on a Canvas Element</h1>
+
+<canvas id="canvas" height="500px" width="500px"></canvas>
+<div id="textmetrics"></div>
+
+<script type="text/javascript">
+
+    const context = document.querySelector('#canvas').getContext('2d');
+    const textdisplay = document.querySelector('#textmetrics');
+
+    context.fillStyle = "black";
+    context.font = 'bold 20px Arial';
+    context.fillText('My Turtle\'s Name Is Larry', 87, 103);
+
+    context.font = 'bold 48px serif';
+    context.strokeText('Larry can\'t fly, alas', 43, 200);
+
+    let textMetrics = context.measureText('Larry can\'t fly, alas');
+    textdisplay.textContent = 'TextMetrics.width: ' + textMetrics.width;
+
+</script>
+<div id="links">
+    <a href="lesson-01-draw-basics.html">Basics</a>
+    <a href="lesson-02-color.html">Color</a>
+    <a href="lesson-04-arc.html">Arcs</a>
+    <a href="lesson-05-stroke-circle.html">Strokes</a>
+    <a href="lesson-07-clicks.html">Clicks</a>
+    <a href="text.html" class="selected">Text</a>
+    <a href="tutsplus-pie-chart.html">Pie Chart</a>
+    <a href="bouncing-ball.html">Animations</a>
+    <a href="pixel-manipulation.html">Pixel Manipulations</a>
+</div>
+</body>
+
+</html>

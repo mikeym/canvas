@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<!--
+    tutorial by Alyssa Nicoll on Egghead
+    https://egghead.io/lessons/html-5-add-click-interaction-to-html-canvas-using-javascript-events
+-->
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Click events in HTML Canvas</h1>
+
+<canvas id="canvas" height="500px" width="500px"></canvas>
+<div class="display-coords"></div>
+
+<script type="text/javascript">
+
+    const canvas = document.querySelector('#canvas');
+    const context = canvas.getContext('2d');
+    const coords = document.querySelector('.display-coords');
+
+    context.fillStyle = '#ffc0cb'; // hex
+    context.fillRect(10, 10, 50, 50);
+
+    context.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    context.fillRect(35, 35, 50, 50);
+
+    const getDocumentCoords = (event) => {
+        const x = event.clientX; // document coords
+        const y = event.clientY; // document coords
+        coords.textContent = `${x}, ${y}`;
+    };
+
+    const getCanvasCoords = (event) => {
+        const container = canvas.getBoundingClientRect();
+        const x = event.clientX - container.left; // client coords
+        const y = event.clientY - container.top; // client coords
+        coords.textContent = `${x}, ${y}`;
+    };
+
+    canvas.addEventListener('click', getCanvasCoords);
+
+</script>
+<div id="links">
+    <a href="lesson-01-draw-basics.html">Basics</a>
+    <a href="lesson-02-color.html">Color</a>
+    <a href="lesson-04-arc.html">Arcs</a>
+    <a href="lesson-05-stroke-circle.html">Strokes</a>
+    <a href="lesson-07-clicks.html" class="selected">Clicks</a>
+    <a href="text.html">Text</a>
+    <a href="tutsplus-pie-chart.html">Pie Chart</a>
+    <a href="bouncing-ball.html">Animations</a>
+    <a href="pixel-manipulation.html">Pixel Manipulations</a>
+</div>
+</body>
+
+</html>

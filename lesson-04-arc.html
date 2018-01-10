@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<!--
+    tutorial by Alyssa Nicoll on Egghead
+    https://egghead.io/lessons/html-5-draw-circles-in-html-canvas-using-arc
+-->
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Drawing Circles with .arc in HTML Canvas</h1>
+
+<canvas id="canvas" height="500px" width="500px"></canvas>
+
+<script type="text/javascript">
+
+    const context = document.querySelector('#canvas').getContext('2d');
+
+    // circle needs three calls, there's no native circle method
+    context.beginPath();
+
+    // context.arc(centerX, centerY, radius, startAngleInRadians, endAngleInRadians, isAntiClockwise)
+    // to convert degrees to radians: (Math.PI/180) * degrees
+    context.arc(80, 80, 70, Math.PI/180 * 0, Math.PI/180 * 360);
+
+    // or if you know what you're doing, this does the same thing...
+    //context.arc(80, 80, 70, 0, 0.5);
+
+    // let's make it a pink circle
+    context.fillStyle = 'rgba(255, 192, 203, 0.5)';
+    context.fill();
+
+    // close the path and it will draw
+    context.closePath();
+
+</script>
+<div id="links">
+    <a href="lesson-01-draw-basics.html">Basics</a>
+    <a href="lesson-02-color.html">Color</a>
+    <a href="lesson-04-arc.html" class="selected">Arcs</a>
+    <a href="lesson-05-stroke-circle.html">Strokes</a>
+    <a href="lesson-07-clicks.html">Clicks</a>
+    <a href="text.html">Text</a>
+    <a href="tutsplus-pie-chart.html">Pie Chart</a>
+    <a href="bouncing-ball.html">Animations</a>
+    <a href="pixel-manipulation.html">Pixel Manipulations</a>
+</div>
+</body>
+
+</html>

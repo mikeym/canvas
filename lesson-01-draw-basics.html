@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<!--
+    tutorial by Alyssa Nicoll on Egghead
+    https://egghead.io/lessons/html-5-draw-in-html-canvas
+-->
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Drawing Shapes in HTML Canvas</h1>
+<canvas id="canvas"></canvas>
+
+<script type="text/javascript">
+
+    // Canvas DOM element accessed by id.
+    // We only use this to set dimensions and grab the context.
+    const canvas = document.querySelector('#canvas');
+
+    // You can set dimensions in the element if you like.
+    // If shape is larger than canvas it gets clipped
+    canvas.width = canvas.height = 500;
+
+    // We do all our work on the context.
+    const context = canvas.getContext('2d');
+
+    // Draw a rectangle. Takes 4 params: x & y start position, width and height
+    context.fillRect(10, 10, 50, 50);
+
+</script>
+<div id="links">
+    <a href="lesson-01-draw-basics.html" class="selected">Basics</a>
+    <a href="lesson-02-color.html">Color</a>
+    <a href="lesson-04-arc.html">Arcs</a>
+    <a href="lesson-05-stroke-circle.html">Strokes</a>
+    <a href="lesson-07-clicks.html">Clicks</a>
+    <a href="text.html">Text</a>
+    <a href="tutsplus-pie-chart.html">Pie Chart</a>
+    <a href="bouncing-ball.html">Animations</a>
+    <a href="pixel-manipulation.html">Pixel Manipulations</a>
+</div>
+</body>
+
+</html>

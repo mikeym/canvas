@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<!--
+    Taken from Mozilla examples:
+    https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
+-->
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Pixel Manipulations</h1>
+
+<canvas id="canvas" height="500px" width="500px"></canvas>
+
+<script type="text/javascript">
+
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = 'owl.jpg'; // I like owls.
+    img.onload = function() {
+        draw(this);
+    };
+
+    // The draw function displays the initial image and provides manipulation options.
+    const draw = (img) => {
+        // draw our owl image on the canvas beginning at pixel 0,0
+        ctx.drawImage(img, 0, 0);
+        // we don't display the image by itself, only render to the canvas
+        img.style.display = 'none';
+        // save the original image so we can restore after changing to grayscale
+        const originalImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+        // invert the image, whether full color or grayscale
+        const invert = () => {
+            let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            let data = imageData.data;
+            // getImageData returns a Uint8ClampedArray
+            // (see: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray)
+            // Each pixel takes up 4 elements in the array:
+            // R data[0]
+            // G data[1]
+            // B data[2]
+            // A data[3] (we're using a jpg without transparency so are ignoring this)
+            // We loop through each pixel in the image and invert it
+            for (let i = 0; i < data.length; i += 4) {
+                data[i]     = 255 - data[i];     // red
+                data[i + 1] = 255 - data[i + 1]; // green
+                data[i + 2] = 255 - data[i + 2]; // blue
+                // data[i + 3] Alpha ignored
+            }
+            ctx.putImageData(imageData, 0, 0);
+        };
+
+        let isGrayscale = false; // sophisticated state management
+
+        // toggle between color and grayscale
+        const grayscale = () => {
+            if (isGrayscale) {
+                // We can't get the original color back after we set the image to grayscale,
+                // so we use a copy of the image data saved when we initially loaded the image.
+                ctx.putImageData(originalImageData, 0, 0);
+                isGrayscale = false;
+            } else {
+                let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                let data = imageData.data;
+                // One of several algorithms available to convert a color image to grayscale.
+                // This goes through each pixel in the image, averages the sum of the 3 colors,
+                // and divides this by 3. The RGB elements of this pixel are then set identically.
+                for (let i = 0; i < data.length; i += 4) {
+                    let avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                    data[i]     = avg; // red
+                    data[i + 1] = avg; // green
+                    data[i + 2] = avg; // blue
+                    // data[i + 3] Alpha ignored
+                }
+                ctx.putImageData(imageData, 0, 0);
+                isGrayscale = true;
+            }
+        };
+
+        const invertbtn = document.getElementById('invertbtn');
+        invertbtn.addEventListener('click', invert);
+        const grayscalebtn = document.getElementById('grayscalebtn');
+        grayscalebtn.addEventListener('click', grayscale);
+    }
+</script>
+<button id="invertbtn">Invert</button>
+<button id="grayscalebtn">Grayscale</button>
+
+<div id="links">
+    <a href="lesson-01-draw-basics.html">Basics</a>
+    <a href="lesson-02-color.html">Color</a>
+    <a href="lesson-04-arc.html">Arcs</a>
+    <a href="lesson-05-stroke-circle.html">Strokes</a>
+    <a href="lesson-07-clicks.html">Clicks</a>
+    <a href="text.html">Text</a>
+    <a href="tutsplus-pie-chart.html">Pie Chart</a>
+    <a href="bouncing-ball.html">Animations</a>
+    <a href="pixel-manipulation.html" class="selected">Pixel Manipulations</a>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<!--
+    tutorial by Alyssa Nicoll on Egghead
+    https://egghead.io/lessons/html-5-draw-circles-in-html-canvas-using-arc
+-->
+<head>
+    <style type="text/css">
+        body { padding: 10px; }
+        h1 { font-size: 20px; }
+        canvas { border: 1px solid #aaa; }
+    </style>
+</head>
+
+<body>
+<h1>Pie Chart in HTML Canvas</h1>
+
+<canvas id="canvas" height="500px" width="500px"></canvas>
+
+<script type="text/javascript">
+
+    // probably the math people understand these
+    function getRadians(deg) {
+        return Math.PI/180 * deg;
+    }
+
+    const context = document.querySelector('#canvas').getContext('2d');
+
+    // not quite what we want, .arc isn't quite it...
+    context.beginPath();
+    context.arc(80, 80, 70, getRadians(-90), getRadians(0));
+    context.fillStyle = 'orange';
+    context.fill();
+    context.closePath();
+
+    // instead, we want .arcTo(x1, y1, x2, y2, r) note diffo params.
+    // need to draw straight lines for the straight bits, arc for curved bit.
+    // The center of our circle is at 200, 170, and it's 50px in radius
+    context.beginPath();
+    context.moveTo(200, 170); // center of circle
+    context.lineTo(200, 120); // draw line move up 50px
+    context.arcTo(250, 120, 250, 170, 50); // draw our arc
+    context.lineTo(200, 170); // draw horizontal line back to the center
+    context.fillStyle = 'brown';
+    context.fill();
+    context.closePath();
+
+    // this is weird though
+
+</script>
+</body>
+
+</html>

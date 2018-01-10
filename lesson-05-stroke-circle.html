@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<!--
+    tutorial by Alyssa Nicoll on Egghead
+    https://egghead.io/lessons/html-5-add-strokes-to-circles-using-html-canvas
+-->
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Stroking Circles in HTML Canvas</h1>
+
+<canvas id="canvas" height="500px" width="500px"></canvas>
+
+<script type="text/javascript">
+
+    // probably the math people understand these
+    function getRadians(deg) {
+        return Math.PI/180 * deg;
+    }
+
+    const context = document.querySelector('#canvas').getContext('2d');
+
+    // 2 circles need to open and close path of each for transparency to work right
+    context.beginPath();
+    context.arc(80, 80, 70, getRadians(0), getRadians(360));
+    context.fillStyle = 'rgba(255, 192, 203, 0.5)';
+    context.fill();
+    context.strokeStyle = 'pink';
+    context.lineWidth = 3;
+    context.stroke();
+    context.closePath();
+
+    context.beginPath();
+    context.arc(210, 210, 170, getRadians(0), getRadians(360));
+    context.fillStyle = 'rgba(192, 203, 255, 0.5)';
+    context.fill();
+    context.strokeStyle = 'purple';
+    context.lineWidth = 2;
+    context.stroke();
+    context.closePath();
+
+</script>
+<div id="links">
+    <a href="lesson-01-draw-basics.html">Basics</a>
+    <a href="lesson-02-color.html">Color</a>
+    <a href="lesson-04-arc.html">Arcs</a>
+    <a href="lesson-05-stroke-circle.html" class="selected">Strokes</a>
+    <a href="lesson-07-clicks.html">Clicks</a>
+    <a href="text.html">Text</a>
+    <a href="tutsplus-pie-chart.html">Pie Chart</a>
+    <a href="bouncing-ball.html">Animations</a>
+    <a href="pixel-manipulation.html">Pixel Manipulations</a>
+</div>
+</body>
+
+</html>

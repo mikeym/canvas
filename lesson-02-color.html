@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<!--
+    tutorial by Alyssa Nicoll on Egghead
+    https://egghead.io/lessons/html-5-add-color-to-graphics-using-html-canvas
+-->
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<h1>Drawing Colors in HTML Canvas</h1>
+
+<!-- setting dimensions in the element, needs a height and width -->
+<canvas id="canvas" height="500px" width="500px"></canvas>
+
+<script type="text/javascript">
+
+    // shortcut selector, since we only need the context from the canvas
+    const context = document.querySelector('#canvas').getContext('2d');
+
+    // Can set fill colors using fillStyle
+    //context.fillStyle = 'pink'; // browser colors
+    context.fillStyle = '#ffc0cb'; // hex
+    //context.fillStyle = 'rgb(255, 192, 203)'; // fillStyle needs a string
+    //context.fillStyle = 'rgba(255, 192, 203, 0.5)'; // fillStyle needs a string
+    context.fillRect(10, 10, 50, 50);
+
+    // order is important, next rect will be filled with next fillStyle
+    context.fillStyle = 'rgba(0, 0, 0, 0.5)';
+    context.fillRect(35, 35, 50, 50);
+
+</script>
+<div id="links">
+    <a href="lesson-01-draw-basics.html">Basics</a>
+    <a href="lesson-02-color.html" class="selected">Color</a>
+    <a href="lesson-04-arc.html">Arcs</a>
+    <a href="lesson-05-stroke-circle.html">Strokes</a>
+    <a href="lesson-07-clicks.html">Clicks</a>
+    <a href="text.html">Text</a>
+    <a href="tutsplus-pie-chart.html">Pie Chart</a>
+    <a href="bouncing-ball.html">Animations</a>
+    <a href="pixel-manipulation.html">Pixel Manipulations</a>
+</div>
+</body>
+
+</html>
